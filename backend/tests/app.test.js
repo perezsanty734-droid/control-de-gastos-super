@@ -1,6 +1,5 @@
 const request = require('supertest');
 const bcrypt = require('bcryptjs');
-const { describe, test, expect, beforeEach } = require('vitest');
 const { createApp } = require('../src/app');
 
 function makeRepo() {
