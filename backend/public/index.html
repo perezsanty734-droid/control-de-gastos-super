@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Control de Gastos Super</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Control de Gastos</h1>
+      <p>Panel financiero minimalista</p>
+    </header>
+
+    <main class="container">
+      <section class="card" id="authSection">
+        <h2>Acceso</h2>
+        <form id="registerForm" class="stack">
+          <h3>Registro</h3>
+          <input name="nombre" placeholder="Nombre" required />
+          <input name="email" type="email" placeholder="Correo" required />
+          <input name="password" type="password" placeholder="Contraseña" minlength="8" required />
+          <select name="rol">
+            <option value="empleado">Empleado</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button type="submit">Crear cuenta</button>
+        </form>
+
+        <form id="loginForm" class="stack">
+          <h3>Login</h3>
+          <input name="email" type="email" placeholder="Correo" required />
+          <input name="password" type="password" placeholder="Contraseña" minlength="8" required />
+          <button type="submit">Iniciar sesión</button>
+        </form>
+      </section>
+
+      <section class="grid hidden" id="appSection">
+        <article class="card">
+          <h2>Nuevo gasto</h2>
+          <form id="expenseForm" class="stack">
+            <select name="category_id" id="categorySelect" required></select>
+            <input name="supplier_id" type="number" placeholder="ID proveedor (opcional)" />
+            <input name="monto" type="number" step="0.01" placeholder="Monto" required />
+            <input name="moneda" maxlength="3" value="MXN" required />
+            <input name="tipo_cambio" type="number" step="0.000001" value="1" required />
+            <input name="fecha" type="date" required />
+            <textarea name="descripcion" placeholder="Descripción"></textarea>
+            <button type="submit">Guardar gasto</button>
+          </form>
+        </article>
+
+        <article class="card">
+          <h2>Clima (API externa)</h2>
+          <form id="weatherForm" class="stack inline">
+            <input name="lat" type="number" step="0.0001" value="19.4326" required />
+            <input name="lon" type="number" step="0.0001" value="-99.1332" required />
+            <button type="submit">Consultar</button>
+          </form>
+          <pre id="weatherResult"></pre>
+        </article>
+
+        <article class="card">
+          <h2>Geocodificación (API externa)</h2>
+          <form id="geoForm" class="stack inline">
+            <input name="query" placeholder="Buscar lugar" required />
+            <button type="submit">Buscar</button>
+          </form>
+          <pre id="geoResult"></pre>
+        </article>
+
+        <article class="card">
+          <h2>Resumen IA</h2>
+          <form id="aiForm" class="stack">
+            <textarea name="text" rows="5" placeholder="Pega aquí notas de gastos para resumir" required></textarea>
+            <button type="submit">Resumir</button>
+          </form>
+          <pre id="aiResult"></pre>
+        </article>
+
+        <article class="card span-2">
+          <h2>Gastos recientes</h2>
+          <ul id="expensesList" class="list"></ul>
+        </article>
+      </section>
+
+      <p id="status" class="status"></p>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
